@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-list">
+                <li>
+                 <a href="">Zikaron</a>
+                </li>
+                <li class="id">Wel Come, User</li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="main-container">
+            <div class="diaries">
+                <ul class="diaries-list">
+                  
+                </ul>
+
+            </div>
+            <div class="form-section">
+                <form action="" onsubmit="" id="uploadForm">
+                    <label for="title">title:</label>
+                    <input type="text" id="title" placeholder="best day so far"><br>
+                    <label for="description">description</label>
+                    <textarea name="" id="description"></textarea><br>
+                    <label for="date">date:</label>
+                    
+                    <input type="date" id="date"><br>
+                    <button type="submit">add  diary</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="hidden-container">
+            <form action="" onsubmit="" id="hidden-form">
+                <button id="close-button">
+                    <img src="/static/assets/icons8-close.svg" alt="Close">
+                </button>
+                <label for="titleToBeViewed">Title:</label>
+                <input type="text" id="titleToBeViewed" placeholder="Best day so far"><br>
+                <label for="descriptionToBeViewed">Description:</label>
+                <textarea id="descriptionToBeViewed"></textarea><br>
+                <label for="dateToBeViewed">Date:</label>
+                <input type="date" id="dateToBeViewed"><br>
+                <button type="submit" id="edit">Update</button>
+            </form>
+        </div>
+    </main>
+    <script src="script.js">
+      
+    </script>
+</body>
+</html>
