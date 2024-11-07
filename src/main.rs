@@ -21,6 +21,7 @@ mod models;
 mod routes;
 
 //idk why i wrote this
+//but owkay 
 impl Responder for Diary{
     type Body = BoxBody;
     fn respond_to(self, req: &HttpRequest) -> HttpResponse<Self::Body> {
