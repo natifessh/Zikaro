@@ -1,17 +1,17 @@
 use actix_web::*;
 pub mod Handlers{
-    use std::{path::PathBuf, sync::{Arc, Mutex}};
+    use std::{path::PathBuf, process::id, sync::{Arc, Mutex}};
     use actix_files::NamedFile;
     use bcrypt::*;
     
 
-    use actix_web::{delete, get, post, web, HttpRequest, HttpResponse, Responder};
+    use actix_web::{delete, get, post, put, web, HttpRequest, HttpResponse, Responder};
     
   
     use rusqlite::{params, Connection, Row};
     use serde_json::json;
 
-    use crate::models::{Diary, EntryResponse, User, UserRow};
+    use crate::models::{Entry, EntryResponse, User, UserRow};
 
 
 #[get("/")]
@@ -69,7 +69,7 @@ pub async fn user_login(conn:web::Data<Arc<Mutex<Connection>>>,user:web::Json<Us
     }
 }
 #[post("{user_id}/upload")]
-pub async fn write_new(path:web::Path<i32>,conn:web::Data<Arc<Mutex<Connection>>>,entry:web::Json<Diary>)->HttpResponse{
+pub async fn write_new(path:web::Path<i32>,conn:web::Data<Arc<Mutex<Connection>>>,entry:web::Json<Entry>)->HttpResponse{
     let con=conn.lock().unwrap();
     let user_id=path.into_inner();
     let qres=con.execute("INSERT INTO diaries(user_id,title,description,date) VALUES(?,?,?,?)",params![user_id,entry.title,entry.description,entry.date]);
@@ -122,5 +122,25 @@ pub async fn delete_entry(
         }
         
     }
+}
+#[put("/edit/{user_id}/{entry_id}")]
+pub async fn update_entry(ids: web::Path<(i32,i32)>, entry: web::Json<Entry>,conn:web::Data<Arc<Mutex<Connection>>>)->HttpResponse{
+    let (user_id,entry_id)=ids.into_inner();
+    let conn=conn.lock().unwrap();
+    let res=conn.execute("UPDATE diaries SET  title=?,description=?,date=? WHERE user_id=? AND id= ?  ", params![entry.title,entry.description,entry.date,user_id,entry_id]);
+    match res {
+        Ok(rows) => {
+            if rows == 0 {
+                HttpResponse::NotFound().json("Task not found")
+            } else {
+                HttpResponse::Ok().json("Status updated successfully")
+            }
+        }
+        Err(e) => {
+            eprintln!("Failed to update status: {}", e);
+            HttpResponse::InternalServerError().json("Failed ")
+        }
+    }
+    
 }
 }

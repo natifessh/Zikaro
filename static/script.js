@@ -1,4 +1,5 @@
 let id;
+let userName;
 let toBeViewed={
     title:"",
     description:"",
@@ -60,7 +61,7 @@ if (loginForm) {
         };
 
         try {
-            console.log("Logging in with user:", JSON.stringify(user));
+           
             const response = await fetch("http://127.0.0.1:8080/login", {
                 method: 'POST',
                 headers: {
@@ -74,8 +75,11 @@ if (loginForm) {
                 console.log("Login successful, user ID:", data);
                 
                 id=data;
+                userName=username
                
                 window.localStorage.setItem("id",id)
+
+                window.localStorage.setItem("username",userName)
 
                 window.location.href = "index.html";
             } else {
@@ -141,6 +145,7 @@ window.addEventListener("DOMContentLoaded", async function(){
  let descriptionToBeViewed=document.getElementById("descriptionToBeViewed")
  let  dateToBeViewed=document.getElementById("dateToBeViewed")
  const closeButton = document.getElementById('close-button');
+ const updatebtn=this.document.getElementById("updatebtn")
 
 closeButton.addEventListener('click', function(event) {
     event.preventDefault(); 
@@ -149,6 +154,7 @@ closeButton.addEventListener('click', function(event) {
 
 });
  res.reverse().forEach(entry => {
+    console.log(res)
     let li=document.createElement("li")
     let parentDiv=document.createElement("div")
     parentDiv.className="entryDetail"
@@ -191,6 +197,23 @@ closeButton.addEventListener('click', function(event) {
     titleToBeViewed.value=entry.title;
     descriptionToBeViewed.value=entry.description;
     dateToBeViewed.value=entry.date;
+    let eid=entry.id;
+    updatebtn.addEventListener("click",async function(){
+        let entry={
+            title:titleToBeViewed.value,
+            description:descriptionToBeViewed.value,
+            date:dateToBeViewed.value
+            
+        }
+        let res=await fetch(`http://127.0.0.1:8080/edit/${id}/${eid}`,{
+            method:'PUT',
+            headers:{
+                'Content-Type':'Application/json'
+            },body:JSON.stringify(entry)
+        })
+        alert("updating")
+        console.log(id)
+    })
    })
     li.appendChild(parentDiv)
     diariesList.appendChild(li)
@@ -202,6 +225,28 @@ closeButton.addEventListener('click', function(event) {
 
 
 }
+let currentDate=document.body.querySelector(".current-date")
+let date=new Date()
+
+currentDate.textContent+=date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear()
+
+function updateTime(){
+
+
+let currentTime=document.body.querySelector(".current-time")
+const date=new Date();
+let secs=date.getSeconds();
+let mins=date.getMinutes();
+let hrs=date.getHours();
+secs=secs<10? "0"+secs:secs;
+hrs=hrs<10? "0"+hrs:hrs;
+mins=mins<10?"0"+mins:mins;
+currentTime.textContent="time:"+hrs+":"+mins+":"+secs;
+}
+setInterval(()=>{
+    updateTime()
+
+},1000)
 
    
     

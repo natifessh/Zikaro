@@ -8,7 +8,7 @@ use dev::Service;
 use env_logger::Env;
 use http::header::ContentType;
 use middleware::Logger;
-use models::{Diary, User};
+use models::{Entry, User};
 use handlers::Handlers::{create_user, delete_entry, get_all, index, user_login, write_new};
 use rusqlite::{params, Connection};
 use serde::{Deserialize, Serialize};
@@ -21,7 +21,7 @@ mod models;
 mod routes;
 
 //idk why i wrote this
-impl Responder for Diary{
+impl Responder for Entry{
     type Body = BoxBody;
     fn respond_to(self, req: &HttpRequest) -> HttpResponse<Self::Body> {
         let body=serde_json::to_string(&self).unwrap();
@@ -43,7 +43,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         let cors = Cors::default()
             .allowed_origin("http://127.0.0.1:5500")
-            .allowed_methods(vec!["GET", "POST","DELETE"])
+            .allowed_methods(vec!["GET", "POST","DELETE","PUT"])
             .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT])
             .allowed_header(http::header::CONTENT_TYPE)
             .max_age(3600);

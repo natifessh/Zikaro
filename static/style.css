@@ -6,6 +6,31 @@ body{
     flex-direction: row;
     padding: 12px;
 }
+header{
+    display: flex;
+    height: fit-content;
+}
+.time{
+    margin-top: 25px;
+    text-align: start;
+   margin-left: 16rem;
+   background: #630000;
+   height: 3.5rem;
+   width: 15%;
+   display: flex;
+   flex-direction: column;
+   border-radius: 15px;
+
+   
+}
+.time > p{
+    margin: 5px 0px 1px 10px;
+  
+   color: rgb(43, 245, 2);
+   font-weight: bold;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
 nav li{
     margin: 10px;
     list-style: none;
@@ -53,14 +78,29 @@ li{
     margin-left: -15px;
    text-align: -10px left;
 }
-input[type="text"]{
-    width: 85%;
-   
+ input[type="text"]{
+    width: 75%;
+    padding: 6px;
+    outline: none;
+}
+#uploadForm > input[type="text"]{
+    background-color: blanchedalmond;
+    width: 100%;
     padding: 6px;
     outline: none;
 }
 input[type="text"]:focus{
-    width: 95%;
+    width: 100%;
+    outline: none;
+}
+#uploadForm >textarea{
+    margin-top: 10px;
+    width: 93%;
+    height: 7em;
+    padding: 12px;
+    font-size: 15px;
+    color: gray;
+    background-color:blanchedalmond;
     outline: none;
 }
 textarea{
@@ -72,12 +112,21 @@ textarea{
     color: gray;
     background-color:blanchedalmond;
     outline: none;
+
 }
 textarea:focus{
     outline: none;
 }
 input{
     margin-top: 12px;
+}
+input[type="date"]{
+    height: 2em;
+    width: 95%;
+    background-color:blanchedalmond;
+    padding: 5px;
+    color: gray;
+    outline: none;
 }
 .form-section button{
     background-color: chocolate;
@@ -132,10 +181,23 @@ button {
     color: white;
     padding: 10px;
     border: none; 
+    margin-top: 5px;
     border-radius: 5px; 
     cursor: pointer; 
     width: 100%;
     font-size: 16px; 
+}
+#uploadForm > button{
+    background-color: chocolate;
+    color: white;
+    padding: 10px;
+    border: none; 
+    margin: 10px 0px 0px 0px ;
+    border-radius: 5px; 
+    cursor: pointer; 
+    width: 100%;
+    font-size: 16px;
+
 }
 a {
     color: chocolate; 
@@ -169,6 +231,7 @@ a:hover {
     background-color: #ccc;
     border-radius: 15px;
     padding: 15px;
+    margin-top: 10px;
 }
 .description{
     width: 70%; 

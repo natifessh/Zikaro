@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize,Serialize)]
-pub struct Diary{
+pub struct Entry{
   
    pub title:String,
    pub description:String,

@@ -1,4 +1,5 @@
 use actix_web::web;
+use Handlers::update_entry;
 use crate::handlers::{self, *};
 pub fn init_routes(cfg:&mut web::ServiceConfig) {
     cfg.service(handlers::Handlers::create_user);
@@ -7,5 +8,6 @@ pub fn init_routes(cfg:&mut web::ServiceConfig) {
     cfg.service(handlers::Handlers::get_all);
     cfg.service(handlers::Handlers::write_new);
     cfg.service(handlers::Handlers::index);
+    cfg.service(handlers::Handlers::update_entry);
     
 }

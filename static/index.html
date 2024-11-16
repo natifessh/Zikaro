@@ -13,10 +13,16 @@
                 <li>
                  <a href="">Zikaron</a>
                 </li>
-                <li class="id">Wel Come, User</li>
+                <li class="user-name">WelCome, User</li>
                 
             </ul>
         </nav>
+        <div class="time">
+            <p class="current-date">date: </p>
+            <p class="current-time">time:</p>
+            
+        </div>
+       
     </header>
     <main>
         <div class="main-container">
@@ -29,12 +35,12 @@
             <div class="form-section">
                 <form action="" onsubmit="" id="uploadForm">
                     <label for="title">title:</label>
-                    <input type="text" id="title" placeholder="best day so far"><br>
+                    <input type="text" id="title" required placeholder="best day so far"><br>
                     <label for="description">description</label>
-                    <textarea name="" id="description"></textarea><br>
+                    <textarea name="" required id="description"></textarea><br>
                     <label for="date">date:</label>
                     
-                    <input type="date" id="date"><br>
+                    <input type="date" id="date" required><br>
                     <button type="submit">add  diary</button>
 
                 </form>
@@ -54,7 +60,7 @@
                 <textarea id="descriptionToBeViewed"></textarea><br>
                 <label for="dateToBeViewed">Date:</label>
                 <input type="date" id="dateToBeViewed"><br>
-                <button type="submit" id="edit">Update</button>
+                <button type="submit" id="updatebtn">Update</button>
             </form>
         </div>
     </main>
