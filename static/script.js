@@ -228,7 +228,8 @@ closeButton.addEventListener('click', function(event) {
 let currentDate=document.body.querySelector(".current-date")
 let date=new Date()
 
-currentDate.textContent+=date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear()
+currentDate.textContent+=date.getDate()+"/"+date.getMonth()+1+"/"+date.getFullYear()
+console.log(date.getDate()+"/"+date.getMonth()+1+"/"+date.getFullYear())
 
 function updateTime(){
 
@@ -241,7 +242,7 @@ let hrs=date.getHours();
 secs=secs<10? "0"+secs:secs;
 hrs=hrs<10? "0"+hrs:hrs;
 mins=mins<10?"0"+mins:mins;
-currentTime.textContent="time:"+hrs+":"+mins+":"+secs;
+currentTime.textContent="time :"+hrs+":"+mins+":"+secs;
 }
 setInterval(()=>{
     updateTime()
