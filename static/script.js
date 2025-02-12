@@ -228,7 +228,7 @@ closeButton.addEventListener('click', function(event) {
 let currentDate=document.body.querySelector(".current-date")
 let date=new Date()
 
-currentDate.textContent+=date.getDate()+"/"+date.getMonth()+1+"/"+date.getFullYear()
+currentDate.textContent="date:"+date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear()
 console.log(date.getDate()+"/"+date.getMonth()+1+"/"+date.getFullYear())
 
 function updateTime(){
